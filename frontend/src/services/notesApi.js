@@ -1,4 +1,4 @@
-
+import colors from '../assets/colors.json'
 
 export const getNotes = async () => {
     const res = await fetch("http://localhost:3000/api/notes")
@@ -14,6 +14,68 @@ export const createNotes = async (notePayload) => {
         },
         body: JSON.stringify(notePayload)
     })
-    const notes = await res.json()
-    return notes
+    const createdNotes = await res.json()
+    return createdNotes
 }
+
+export const createNoteFunction = async () =>{
+    const newNote ={
+      content: "",
+      color: {bgColor: colors[0].bgColor, headerColor: colors[0].headerColor},
+      position: {x: 205, y: 300},
+    }
+    
+    try{
+      await createNotes(newNote)
+        return await getNotes();
+    } catch (e) {
+      console.error("Error creating note:", e)
+    }
+}
+
+export const updateNotes = async (noteUpdatePayload, id) => {
+    const res = await fetch(`http://localhost:3000/api/notes/${id}`,{
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(noteUpdatePayload)
+    })
+    const updatedNotes = await res.json()
+    return updatedNotes
+}
+
+export const updateNoteFunction = async (changes, id) =>{
+    const updatedNote ={
+      content: changes.content,
+      color: changes.color,
+      position: changes.position,
+      isArchived: changes.isArchived,
+      createdAt: changes.createdAt,
+    }
+    
+    try{
+      await updateNotes(updatedNote, id)
+    } catch (e) {
+      console.error("Error updating note:", e)
+    }
+}
+
+export const deleteNotes = async (id) => {
+    const res = await fetch(`http://localhost:3000/api/notes/${id}`,{
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const deletedNotes = await res.json()
+    return deletedNotes
+}
+
+
+
+
+
+
+
+
