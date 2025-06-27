@@ -1,0 +1,43 @@
+.note{
+    width: 25rem;
+    border-radius: 8px;
+    color: black;
+    height: auto;
+    position: absolute;
+}
+.header{
+    padding: 1rem;
+    border-radius: 8px 8px 0 0;
+    background-color: #fdfd7f;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    height: 2rem;
+    cursor: pointer;
+}
+.deleteButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    margin-left: 4px;
+}
+textarea{
+    color: black;
+    width: 100%;
+    min-height: 5rem;
+    border-radius: 0 0 8px 8px;
+    background-color: inherit;
+    border: none;
+    resize: none;
+    padding: 0.5rem;
+    overflow: hidden;
+}
+textarea:focus{
+    outline: none;
+}
