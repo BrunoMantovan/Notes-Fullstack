@@ -1,11 +1,14 @@
 import NotesScreen from "./components/NotesScreen/NotesScreen"
+import { NoteProvider } from "./components/Notescontext"
 
 function App() {
   
   return (
     <>
-      <h1 style={{textAlign:"center"}}>Ensolvers Challenge</h1>
-      <NotesScreen />
+      <NoteProvider>
+        <h1 style={{textAlign:"center"}}>Ensolvers Challenge</h1>
+        <NotesScreen />
+      </NoteProvider>
     </>
   )
 }

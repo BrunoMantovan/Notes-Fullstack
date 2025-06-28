@@ -15,13 +15,23 @@
 }
 
 .container button{
-    background-color: grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #808080;
     border-radius: 50%;
     border: none;
     cursor: pointer;
     width: 3rem;
     height: 3rem;
+    transition: all 0.2s;
 }
 .container button:focus{
     outline: none;
+}
+.container button:hover{
+    transform: scale(1.1);
+}
+.container button:active{
+    opacity: 0.5;
 }

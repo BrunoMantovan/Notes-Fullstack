@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 
 const colorSchema = new mongoose.Schema(
     {
+        id:{
+            type: String,
+            required: true,
+        },
         bgColor: {
             type: String,
             required: true,
@@ -36,10 +40,12 @@ const NoteSchema = new mongoose.Schema(
         createdAt: {
             type: Date,
             default: Date.now,
+            required: true,
         },
         isArchived: {
             type: Boolean,
             default: false,
+            required: true,
         },
     }
 )

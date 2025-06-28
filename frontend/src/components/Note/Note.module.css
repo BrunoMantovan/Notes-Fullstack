@@ -15,7 +15,7 @@
     height: 2rem;
     cursor: pointer;
 }
-.deleteButton{
+.button{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,7 +26,18 @@
     height: 2rem;
     padding: 0;
     margin-left: 4px;
+    transition: all 0.2s;
+    border-radius: 50%;
 }
+.button:hover{
+    background-color: #5050502f;
+    transform: scale(1.05);
+}
+.button:active{
+    opacity: 0.5;
+}
+
+
 textarea{
     color: black;
     width: 100%;

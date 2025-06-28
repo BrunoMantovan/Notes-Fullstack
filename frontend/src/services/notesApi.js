@@ -21,7 +21,7 @@ export const createNotes = async (notePayload) => {
 export const createNoteFunction = async () =>{
     const newNote ={
       content: "",
-      color: {bgColor: colors[0].bgColor, headerColor: colors[0].headerColor},
+      color: {id: colors[0].id, bgColor: colors[0].bgColor, headerColor: colors[0].headerColor},
       position: {x: 205, y: 300},
     }
     
@@ -52,6 +52,18 @@ export const updateNoteFunction = async (changes, id) =>{
       position: changes.position,
       isArchived: changes.isArchived,
       createdAt: changes.createdAt,
+    }
+    
+    try{
+      await updateNotes(updatedNote, id)
+    } catch (e) {
+      console.error("Error updating note:", e)
+    }
+}
+
+export const changeArchiveStatus = async (id, isArchived) => {
+    const updatedNote ={
+      isArchived: !isArchived,
     }
     
     try{

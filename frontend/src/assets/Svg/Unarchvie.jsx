@@ -1,4 +1,4 @@
-export default function Archive() {
+export default function Unarchvie() {
   return (
     <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
@@ -10,6 +10,13 @@ export default function Archive() {
       <g id="SVGRepo_iconCarrier">
         {" "}
         <path
+          d="M12 21L12 12M12 12L15 15.3333M12 12L9 15.3333"
+          stroke="#1C274C"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        ></path>{" "}
+        <path
           d="M20.5 7V13C20.5 16.7712 20.5 18.6569 19.3284 19.8284C18.1569 21 16.2712 21 12.5 21H11.5M3.5 7V13C3.5 16.7712 3.5 18.6569 4.67157 19.8284C5.37634 20.5332 6.3395 20.814 7.81608 20.9259"
           stroke="#1C274C"
           strokeWidth="1.5"
@@ -20,13 +27,6 @@ export default function Archive() {
           stroke="#1C274C"
           strokeWidth="1.5"
           strokeLinecap="round"
-        ></path>{" "}
-        <path
-          d="M12 7L12 16M12 16L15 12.6667M12 16L9 12.6667"
-          stroke="#1C274C"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
         ></path>{" "}
       </g>
     </svg>

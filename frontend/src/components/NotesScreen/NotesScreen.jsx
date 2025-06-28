@@ -1,41 +1,33 @@
-import { useState, useEffect } from "react";
-import { createNoteFunction, deleteNotes, getNotes } from "../../services/notesApi";
+import { useState } from "react";
+import { deleteNotes, changeArchiveStatus } from "../../services/notesApi";
 import Note from '../note/note'
-import CreateNote from "../CreateNote/CreateNote";
+import CreateNote from "../ButtonHolder/ButtonHolder";
+import { useSelectedNote } from "../Notescontext";
 
 export default function NotesScreen() {
-  const [notesArray, setNotesArray] = useState([])
-    useEffect(() => {
   
-      const fetchNotes = async ()=>{
-        try {
-          const notes = await getNotes()
-          console.log("Fetched notes: ", notes);
-          
-          setNotesArray(notes)
-  
-        } catch (e) {
-          console.error("Error fetching notes:", e)
-        }
-      } 
-      fetchNotes()
-    }, [])
-  
-    const handleAddNote = async () => {
-      const notes = await createNoteFunction()
-      setNotesArray(notes);
-    }
-    const onDeleteNote = async (id) =>{
-      await deleteNotes(id)
-      const notes = await getNotes();
-      setNotesArray(notes);
-    }
-    return (
-      <>
-        <CreateNote onAddNote={handleAddNote} />
-        {notesArray.map(note => (
-          <Note key={note._id} id={note._id} color={note.color} onDelete={onDeleteNote} createdAt={note.createdAt} position={note.position} content={note.content}/>
-        ))}
-      </>
-    )
+  const { notesArray, setNotesArray, displayArchived } = useSelectedNote();  
+
+  const onDeleteNote = async (id) =>{
+    await deleteNotes(id)
+    setNotesArray((prevState) =>
+      prevState.filter((note) => note._id !== id)
+    );
+  }
+
+  const onHandleArchive = async (id, isArchived) =>{
+    await changeArchiveStatus(id, isArchived)
+    setNotesArray((prevState) =>
+      prevState.filter((note) => note._id !== id)
+    );
+  }
+
+  return (
+    <>
+      <CreateNote />
+      {notesArray.filter(e => e.isArchived === displayArchived).map(note => (
+        <Note key={note._id} id={note._id} onArchive={onHandleArchive} isArchived={note.isArchived} color={note.color} onDelete={onDeleteNote} createdAt={note.createdAt} position={note.position} content={note.content}/>
+      ))}
+    </>
+  )
 }
