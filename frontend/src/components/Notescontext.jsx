@@ -47,8 +47,6 @@ export const NoteProvider = ({ children }) => {
 
     const handleColorChange = async (colorId) => {
         if(!selectedNote){return}
-        const note = notesArray.find((note) => note._id === selectedNote)
-        if (note && note.color.id === colorId) return
         const newColor = await changeColor(colorId, selectedNote)
         setNotesArray((prevNotes) => prevNotes.map((note) => note._id === selectedNote ? { ...note, color: newColor.color } : note));
     }
