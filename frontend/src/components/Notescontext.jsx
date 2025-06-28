@@ -7,6 +7,7 @@ export const NoteProvider = ({ children }) => {
     const [selectedNote, setSelectedNote] = useState(null);
     const [notesArray, setNotesArray] = useState([])
     const [displayArchived, setDisplayArchived] = useState(false)
+    const [initialPosition, setInitialPosition] = useState({x: 200, y: 400})
 
     useEffect(() => {
         const fetchNotes = async ()=>{
@@ -24,7 +25,9 @@ export const NoteProvider = ({ children }) => {
     }, [displayArchived])
 
     const handleAddNote = async () => {
-        const notes = await createNoteFunction(displayArchived)
+        const notes = await createNoteFunction(displayArchived, initialPosition)
+        const newInitialPosition = {x: initialPosition.x + 15, y: initialPosition.y - 20}
+        setInitialPosition(newInitialPosition)
         setNotesArray(notes);
     }
 

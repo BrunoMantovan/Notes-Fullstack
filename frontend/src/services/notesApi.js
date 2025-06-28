@@ -18,12 +18,12 @@ export const createNotes = async (notePayload) => {
   return createdNotes
 }
 
-export const createNoteFunction = async (isArchived) =>{
+export const createNoteFunction = async (isArchived, initialPosition) =>{
   const newNote ={
     content: "",
     color: {id: colors[0].id, bgColor: colors[0].bgColor, headerColor: colors[0].headerColor},
     isArchived: isArchived,
-    position: {x: 205, y: 300},
+    position: initialPosition,
   }
     
   try{
