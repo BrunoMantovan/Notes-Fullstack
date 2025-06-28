@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { getNotes, createNoteFunction } from "../services/notesApi";
+import { getNotes, createNoteFunction, deleteNotes, changeArchiveStatus } from "../services/notesApi";
 
 const NoteContext = createContext();
 
@@ -24,12 +24,26 @@ export const NoteProvider = ({ children }) => {
     }, [displayArchived])
 
     const handleAddNote = async () => {
-        const notes = await createNoteFunction()
+        const notes = await createNoteFunction(displayArchived)
         setNotesArray(notes);
     }
 
+    const onDeleteNote = async (id) =>{
+        await deleteNotes(id)
+        setNotesArray((prevState) =>
+        prevState.filter((note) => note._id !== id)
+        );
+    }
+
+    const onHandleArchive = async (id, isArchived) =>{
+        await changeArchiveStatus(id, isArchived)
+        setNotesArray((prevState) =>
+        prevState.filter((note) => note._id !== id)
+        );
+    }
+
     return (
-        <NoteContext.Provider value={{selectedNote, setSelectedNote, notesArray, setNotesArray, handleAddNote, displayArchived, setDisplayArchived}}>
+        <NoteContext.Provider value={{selectedNote, setSelectedNote, notesArray, setNotesArray, handleAddNote, onDeleteNote, onHandleArchive, displayArchived, setDisplayArchived}}>
             {children}
         </NoteContext.Provider>
     )
