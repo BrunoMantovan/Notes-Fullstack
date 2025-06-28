@@ -6,7 +6,6 @@ function App() {
   return (
     <>
       <NoteProvider>
-        <h1 style={{textAlign:"center"}}>Ensolvers Challenge</h1>
         <NotesScreen />
       </NoteProvider>
     </>

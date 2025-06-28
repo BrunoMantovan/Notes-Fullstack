@@ -52,3 +52,34 @@ textarea{
 textarea:focus{
     outline: none;
 }
+footer{
+    background-color: inherit;
+    padding: 0.5rem;
+    border-radius: 0 0 8px 8px;
+}
+footer input{
+    background-color: inherit;
+    color: rgb(0, 0, 0);
+    border-radius: 8px;
+    font-size: 13px;
+    border: none;
+    padding: 3px;
+}
+footer input:focus{
+    border: black;
+}
+footer button{
+    background-color: rgba(117, 117, 117, 0.445);
+    width: 15px;
+    height: 15px;
+    color: black;
+    border: none;
+    border-radius: 50%;
+    margin-left: 3px;
+    cursor: pointer;
+}
+.category{
+    margin-right: 10px;
+    color: rgba(109, 109, 109, 0.836);
+    font-size: 13px;
+}

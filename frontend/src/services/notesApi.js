@@ -24,6 +24,7 @@ export const createNoteFunction = async (isArchived, initialPosition) =>{
     color: {id: colors[0].id, bgColor: colors[0].bgColor, headerColor: colors[0].headerColor},
     isArchived: isArchived,
     position: initialPosition,
+    categories: []
   }
     
   try{
@@ -55,6 +56,20 @@ export const changeColor = async (colorId, id) => {
       bgColor: colors[colorIndex].bgColor,
       headerColor: colors[colorIndex].headerColor
     }
+  }
+
+  try{
+    await updateNotes(updatedNote, id)
+    return updatedNote
+  } catch (e) {
+    console.error("Error updating note:", e)
+  }
+}
+
+export const updateCategory = async (categories, id) => {
+    console.log("categories in api.js ", categories)
+  const updatedNote ={
+    categories: categories
   }
 
   try{

@@ -40,7 +40,7 @@ app.post('/api/notes', async (req, res) => {
 app.put('/api/notes/:id', async (req, res) => {
     try {
         const {id} = req.params;
-        const note = await Note.findByIdAndUpdate(id, req.body)
+        const note = await Note.findByIdAndUpdate(id, req.body, { new: true })
 
         if (!note) {
             return res.status(404).json({ error: "Note not found" });

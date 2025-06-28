@@ -47,6 +47,11 @@ const NoteSchema = new mongoose.Schema(
             default: false,
             required: true,
         },
+        categories: {
+            type: [String],
+            default: [],
+            required: true
+        }
     }
 )
 
