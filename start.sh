@@ -9,7 +9,7 @@ npm install
 
 if [ ! -f .env ]; then
   echo "PORT=3000" > .env
-  echo "MONGODB_URI=mongodb://localhost:27017/ensolvers" >> .env
+  echo "MONGODB_URI=mongodb+srv://brunochupetin1:1oWkY7i29erXIXtE@notesdb.bmr3tey.mongodb.net/?retryWrites=true&w=majority&appName=NotesDB" >> .env
   echo "Created backend/.env file with default values."
 fi
 

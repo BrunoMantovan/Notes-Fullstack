@@ -1,11 +1,12 @@
 import Styles from './ColorButton.module.css';
+import { useSelectedNote } from '../Notescontext';
+
 
 export default function ColorButton(props) {
-  const changeColor = () => {
-        console.log("CHange color clicked:", props.color);
-    };
+    
+    const {handleColorChange} = useSelectedNote()
  
     return (
-        <button onClick={changeColor} className={Styles.colorButon} style={{ backgroundColor: props.color.headerColor }}></button>
+        <button onClick={() => handleColorChange(props.color.id)} className={Styles.colorButon} style={{ backgroundColor: props.color.headerColor }}></button>
     );
 }
