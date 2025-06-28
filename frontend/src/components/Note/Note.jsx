@@ -117,10 +117,6 @@ export default function note(props) {
             
         </textarea>
         <footer className={styles.footer}>
-                <div className={styles.addCategory}>
-                    <input type="text" value={newCategory} onChange={e => setNewCategory(e.target.value)} placeholder="Add category" onKeyDown={e => {
-                    if (e.key === "Enter") handleAddCategory()}}/>
-                </div>
                 <div className={styles.categories}>
                     {categories.map(cat => (
                         <span key={cat} className={styles.category}>
@@ -130,6 +126,11 @@ export default function note(props) {
                             </button>
                         </span>
                     ))}
+                </div>
+                <div className={styles.addCategory}>
+                    <input type="text" value={newCategory} onChange={e => setNewCategory(e.target.value)} placeholder="Add category" onKeyDown={e => {
+                    if (e.key === "Enter") handleAddCategory()}}/>
+                    <button onClick={handleAddCategory}>+</button>
                 </div>
             </footer>
     </div>

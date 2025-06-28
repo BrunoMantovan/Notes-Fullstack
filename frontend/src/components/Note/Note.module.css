@@ -62,7 +62,6 @@ footer input{
     color: rgb(0, 0, 0);
     border-radius: 8px;
     font-size: 13px;
-    border: none;
     padding: 3px;
 }
 footer input:focus{
