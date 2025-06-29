@@ -66,6 +66,7 @@ export default function note(props) {
             color: color,
             isArchived: isArchived,
             position: positionRef.current,
+            categories: categories
         }
         console.log("Updating note with changes: ", noteChanges);
         
