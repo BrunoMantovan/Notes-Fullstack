@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { getNotes, createNoteFunction, deleteNotes, changeArchiveStatus, changeColor } from "../services/notesApi";
+import { getNotes, createNoteFunction, deleteNotes, changeArchiveStatus, changeColor, updateCategory } from "../services/notesApi";
 
 const NoteContext = createContext();
 
@@ -10,7 +10,10 @@ export const NoteProvider = ({ children }) => {
     const [initialPosition, setInitialPosition] = useState({x: 200, y: 400})
 
     useEffect(() => {
-        const fetchNotes = async ()=>{
+        fetchNotes()
+    }, [displayArchived])
+
+    const fetchNotes = async ()=>{
         try {
             const notes = await getNotes()
             console.log("Fetched notes: ", notes);
@@ -20,9 +23,7 @@ export const NoteProvider = ({ children }) => {
         } catch (e) {
             console.error("Error fetching notes:", e)
         }
-        } 
-        fetchNotes()
-    }, [displayArchived])
+    } 
 
     const handleAddNote = async () => {
         const notes = await createNoteFunction(displayArchived, initialPosition)
@@ -51,8 +52,24 @@ export const NoteProvider = ({ children }) => {
         setNotesArray((prevNotes) => prevNotes.map((note) => note._id === selectedNote ? { ...note, color: newColor.color } : note));
     }
 
+    const addCategory = async (updatedCategories, id) => {
+        await updateCategory(updatedCategories, id);
+        setNotesArray(prevNotes =>
+        prevNotes.map(note =>
+            note._id === id ? { ...note, categories: updatedCategories } : note
+        ))
+    }
+
+    const removeCategory = async (updatedCategories, id) => {
+        await updateCategory(updatedCategories, id);
+        setNotesArray(prevNotes =>
+        prevNotes.map(note =>
+            note._id === id ? { ...note, categories: updatedCategories } : note
+        ))
+    }
+
     return (
-        <NoteContext.Provider value={{selectedNote, setSelectedNote, notesArray, setNotesArray, handleAddNote, onDeleteNote, onHandleArchive, displayArchived, setDisplayArchived, handleColorChange}}>
+        <NoteContext.Provider value={{selectedNote, setSelectedNote, notesArray, setNotesArray, handleAddNote, onDeleteNote, onHandleArchive, displayArchived, setDisplayArchived, handleColorChange, addCategory, removeCategory}}>
             {children}
         </NoteContext.Provider>
     )

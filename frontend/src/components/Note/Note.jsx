@@ -4,13 +4,14 @@ import Trash from "../../assets/Svg/Trash"
 import Archive from '../../assets/Svg/archive'
 import Unarchvie from '../../assets/Svg/Unarchvie'
 import Spinner from '../../assets/Svg/Spinner'
-import {updateCategory, updateNoteFunction} from '../../services/notesApi'
+import Cross from '../../assets/Svg/Cross'
+import {updateNoteFunction} from '../../services/notesApi'
 import { noteMoveOffset, onGrow } from '../../utils'
 import { useSelectedNote } from '../Notescontext'
 
 export default function note(props) {
 
-    const {selectedNote, setSelectedNote, onDeleteNote, onHandleArchive} = useSelectedNote()
+    const {selectedNote, setSelectedNote, onDeleteNote, onHandleArchive, addCategory, removeCategory} = useSelectedNote()
 
     useEffect(() => {
         onGrow(textareaRef.current);  
@@ -18,8 +19,9 @@ export default function note(props) {
     
     const [position, setPosition] = useState(props.position)
     const [updating, setUpdating] = useState(false)
-    const [categories, setCategories] = useState(props.categories || []);
+    const categories = props.categories;
     const [newCategory, setNewCategory] = useState("");
+    const [showCategories, setShowCategories] = useState(false)
     const typingTimer = useRef(null)
     const color = props.color
     const id = props.id
@@ -91,21 +93,18 @@ export default function note(props) {
     const handleAddCategory = async () => {
         if (!newCategory.trim() || categories.includes(newCategory.trim())) return;
         const updatedCategories = [...categories, newCategory.trim()];
-        setCategories(updatedCategories);
         setNewCategory("");
-        console.log("new categories ", updatedCategories);
         
-        await updateCategory(updatedCategories, id);
-    };
+        await addCategory(updatedCategories, id);
+    }
 
     const handleRemoveCategory = async (cat) => {
         const updatedCategories = categories.filter(c => c !== cat);
-        setCategories(updatedCategories);
-        await updateCategory(updatedCategories, id);
-    };
+        await removeCategory(updatedCategories, id);
+    }
 
   return (
-    <div className={`${styles.note} note`} ref={noteRef} style={{backgroundColor: color.bgColor, left: `${position.x}px`, top: `${position.y}px`, zIndex: selectedNote === id ? 10 : 1}}>
+    <div className={`${styles.note} note`} ref={noteRef} style={{backgroundColor: color.bgColor, left: `${position.x}px`, top: `${position.y}px`, zIndex: selectedNote === id ? 10 : 1, '--note-bg-color': color.bgColor}}>
         <header className={styles.header} style={{backgroundColor: color.headerColor}} onMouseDown={onMouseClick}>
             <button className={styles.button} onClick={() =>onHandleArchive(id, isArchived)}>{isArchived ? <Unarchvie/> : <Archive/>}</button>
             <p>{props.createdAt ? new Date(props.createdAt).toLocaleString(undefined, {day: '2-digit', month: '2-digit', year: '2-digit'}) : ""}</p>
@@ -117,23 +116,26 @@ export default function note(props) {
         <textarea rows={3} ref={textareaRef} onInput={e => onGrow(e.target)} defaultValue={props.content} onFocus={() => setSelectedNote(id)} onKeyUp={handleKeyUp} style={{color: "#18181A"}}>
             
         </textarea>
-        <footer className={styles.footer}>
+        <footer className={`${styles.footer} ${showCategories ? styles.changeFooter : ''}`}>
+            <section className={`${styles.innerFooter} ${showCategories ? styles.showInnerFooter : ''}`}>
+                <div className={styles.categoryRow} >
+                    <div className={styles.addCategory} style={{opacity: !showCategories ? 0 : 1 }}>
+                        <input type="text" value={newCategory} onChange={e => setNewCategory(e.target.value)} placeholder="Add category" onKeyDown={e => {if (e.key === "Enter") handleAddCategory()}}style={{backgroundColor: color.bgColor}}/>
+                        <button onClick={handleAddCategory}>+</button>
+                    </div>
+                    <button className={styles.toggleCategoriesBtn} style={{transform: showCategories ? "rotate(180deg)" : "rotate(0deg)"}} onClick={() => setShowCategories(!showCategories)} title="Hide categories">
+                        <Cross/>
+                    </button>
+                </div>
                 <div className={styles.categories}>
                     {categories.map(cat => (
-                        <span key={cat} className={styles.category}>
+                        <button key={cat} className={styles.removeCategory} onClick={() => handleRemoveCategory(cat)} title="Remove category">
                             {cat}
-                            <button className={styles.removeCategory} onClick={() => handleRemoveCategory(cat)} title="Remove category">
-                                ×
-                            </button>
-                        </span>
+                        </button>
                     ))}
                 </div>
-                <div className={styles.addCategory}>
-                    <input type="text" value={newCategory} onChange={e => setNewCategory(e.target.value)} placeholder="Add category" onKeyDown={e => {
-                    if (e.key === "Enter") handleAddCategory()}}/>
-                    <button onClick={handleAddCategory}>+</button>
-                </div>
-            </footer>
+            </section>
+        </footer>
     </div>
   )
 }

@@ -5,6 +5,7 @@
     height: auto;
     position: absolute;
 }
+
 .header{
     padding: 1rem;
     border-radius: 8px 8px 0 0;
@@ -15,6 +16,7 @@
     height: 2rem;
     cursor: pointer;
 }
+
 .button{
     display: flex;
     justify-content: center;
@@ -29,10 +31,12 @@
     transition: all 0.2s;
     border-radius: 50%;
 }
+
 .button:hover{
     background-color: #5050502f;
     transform: scale(1.05);
 }
+
 .button:active{
     opacity: 0.5;
 }
@@ -46,39 +50,104 @@ textarea{
     background-color: inherit;
     border: none;
     resize: none;
-    padding: 0.5rem;
+    padding: 0.5rem 0.5rem 0rem 0.5rem;
     overflow: hidden;
 }
+
 textarea:focus{
     outline: none;
 }
-footer{
-    background-color: inherit;
-    padding: 0.5rem;
-    border-radius: 0 0 8px 8px;
+.footer{
+    padding: 0 0.5rem;
+    background-color: transparent;
+    transition: all 0.3s;
 }
-footer input{
-    background-color: inherit;
+.changeFooter{
+    background-color: #727272af;
+    border: 1px solid gray;
+    border-radius: 0 0 8px 8px;
+    padding-top: 0.5rem;
+    transition: all 0.3s;
+}
+
+.toggleCategoriesBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toggleCategoriesBtn:hover {
+    scale: 1.3;
+}
+
+.innerFooter {
+    max-height: 30px;
+    opacity: 1;
+    overflow: hidden;
+    border-top: none;
+    transition: all 0.4s;
+}
+
+.showInnerFooter {
+    max-height: 200px;
+    pointer-events: auto;
+}
+.categoryRow{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.innerFooter input{
+    background-color: #7272728e;
     color: rgb(0, 0, 0);
-    border-radius: 8px;
+    border-radius: 16px;
     font-size: 13px;
     padding: 3px;
 }
-footer input:focus{
-    border: black;
+
+.innerFooter input:focus{
+    outline: none
 }
-footer button{
-    background-color: rgba(117, 117, 117, 0.445);
-    width: 15px;
-    height: 15px;
+
+.addCategory button{
+    width: 18px;
+    height: 18px;
     color: black;
     border: none;
     border-radius: 50%;
     margin-left: 3px;
     cursor: pointer;
+    background-color: var(--note-bg-color);
+    transition: all 0.3s;
 }
-.category{
-    margin-right: 10px;
-    color: rgba(109, 109, 109, 0.836);
-    font-size: 13px;
+
+.categories{
+    margin: 5px 0 5px 0;
+}
+
+.removeCategory{
+    border: none;
+    cursor: pointer;
+    border-radius: 16px;
+    padding: 3px 10px;
+    color: #1D1C1A;
+    margin-right: 5px;
+    background-color: var(--note-bg-color);
+    transition: all 0.3s;
+}
+
+footer button:focus{
+    opacity: 0.7;
+}
+.addCategory button:hover, .removeCategory:hover{
+    background-color: #ffffffad;
+}
+.addCategory{
+    display: flex;
+    align-items: center;
 }
