@@ -33,8 +33,8 @@
 }
 
 .button:hover{
-    background-color: #5050502f;
-    transform: scale(1.05);
+    
+    transform: scale(1.1);
 }
 
 .button:active{
