@@ -21,7 +21,7 @@ export const createNotes = async (notePayload) => {
 export const createNoteFunction = async (isArchived, initialPosition) =>{
   const newNote ={
     content: "",
-    color: {id: colors[0].id, bgColor: colors[0].bgColor, headerColor: colors[0].headerColor},
+    color: {id: colors[0].id, bgColor: colors[0].bgColor, headerColor: colors[0].headerColor, footerColor: colors[0].footerColor},
     isArchived: isArchived,
     position: initialPosition,
     categories: []
@@ -54,7 +54,8 @@ export const changeColor = async (colorId, id) => {
     color: {
       id: colors[colorIndex].id,
       bgColor: colors[colorIndex].bgColor,
-      headerColor: colors[colorIndex].headerColor
+      headerColor: colors[colorIndex].headerColor,
+      footerColor: colors[colorIndex].footerColor
     }
   }
 

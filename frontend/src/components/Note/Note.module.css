@@ -63,7 +63,7 @@ textarea:focus{
     transition: all 0.3s;
 }
 .changeFooter{
-    background-color: #727272af;
+    background-color: var(--note-ft-color);
     border: 1px solid gray;
     border-radius: 0 0 8px 8px;
     padding-top: 0.5rem;
@@ -124,6 +124,7 @@ textarea:focus{
     cursor: pointer;
     background-color: var(--note-bg-color);
     transition: all 0.3s;
+    border: 1px solid #1D1C1A;
 }
 
 .categories{
@@ -131,7 +132,7 @@ textarea:focus{
 }
 
 .removeCategory{
-    border: none;
+    border: 1px solid #1D1C1A;
     cursor: pointer;
     border-radius: 16px;
     padding: 3px 10px;

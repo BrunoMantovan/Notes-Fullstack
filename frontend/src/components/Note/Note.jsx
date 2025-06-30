@@ -104,7 +104,7 @@ export default function note(props) {
     }
 
   return (
-    <div className={`${styles.note} note`} ref={noteRef} style={{backgroundColor: color.bgColor, left: `${position.x}px`, top: `${position.y}px`, zIndex: selectedNote === id ? 10 : 1, '--note-bg-color': color.bgColor}}>
+    <div className={`${styles.note} note`} ref={noteRef} style={{backgroundColor: color.bgColor, left: `${position.x}px`, top: `${position.y}px`, zIndex: selectedNote === id ? 10 : 1, '--note-bg-color': color.bgColor, '--note-ft-color': color.footerColor}}>
         <header className={styles.header} style={{backgroundColor: color.headerColor}} onMouseDown={onMouseClick}>
             <button className={styles.button} onClick={() =>onHandleArchive(id, isArchived)}>{isArchived ? <Unarchvie/> : <Archive/>}</button>
             <p>{props.createdAt ? new Date(props.createdAt).toLocaleString(undefined, {day: '2-digit', month: '2-digit', year: '2-digit'}) : ""}</p>

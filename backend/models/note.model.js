@@ -13,6 +13,10 @@ const colorSchema = new mongoose.Schema(
         headerColor: {
             type: String,
             required: true,
+        },
+        footerColor: {
+            type: String,
+            required: true
         }
     },
     { _id: false }

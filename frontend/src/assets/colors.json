@@ -3,24 +3,28 @@
         "id": "color-yellow",
         "headerColor": "#fdfd7f",
         "bgColor": "#ffffba",
-        "colorText": "#18181A"
+        "colorText": "#18181A",
+        "footerColor": "#fdfd7f4b"
     },
     {
         "id": "color-green",
         "headerColor": "#b8fd8e",
         "bgColor": "#bcdeaf",
-        "colorText": "#18181A"
+        "colorText": "#18181A",
+        "footerColor": "#b8fd8e73"
     },
     {
         "id": "color-blue",
         "headerColor": "#93d0ff",
         "bgColor": "#bae1ff",
-        "colorText": "#18181A"
+        "colorText": "#18181A",
+        "footerColor": "#93d0ff96"
     },
     {
         "id": "color-red",
         "headerColor": "#ff6a7a",
         "bgColor": "#faa3a3",
-        "colorText": "#18181A"
+        "colorText": "#18181A",
+        "footerColor": "#ff6a7988"
     }
 ]
