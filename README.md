@@ -55,7 +55,7 @@ The backend uses a `.env` file for config. Example:
 
 ```
 PORT=3000
-MONGODB_URI=mongodb://localhost:27017/ensolvers
+MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.abcde.mongodb.net/mydatabase?retryWrites=true&w=majority
 ```
 
 If you use MongoDB Atlas, update `MONGODB_URI` accordingly.
