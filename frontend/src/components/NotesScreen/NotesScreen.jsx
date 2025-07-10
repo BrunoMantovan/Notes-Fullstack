@@ -1,4 +1,4 @@
-import Note from '../note/note'
+import Note from "../Note/Note"
 import CreateNote from "../ButtonHolder/ButtonHolder";
 import { useSelectedNote } from "../Notescontext";
 import { useState } from 'react';

@@ -1,13 +1,15 @@
 import colors from '../assets/colors.json'
 
+const url = "https://notes-fullstack-t0jt.onrender.com/api/notes"
+
 export const getNotes = async () => {
-  const res = await fetch("http://localhost:3000/api/notes")
+  const res = await fetch(url)
   const notes = await res.json()
   return notes
 }
 
 export const createNotes = async (notePayload) => {
-  const res = await fetch("http://localhost:3000/api/notes",{
+  const res = await fetch(url,{
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -36,7 +38,7 @@ export const createNoteFunction = async (isArchived, initialPosition) =>{
 }
 
 export const updateNotes = async (noteUpdatePayload, id) => {
-const res = await fetch(`http://localhost:3000/api/notes/${id}`,{
+const res = await fetch(`${url}/${id}`,{
   method: "PUT",
   headers: {
     "Content-Type": "application/json"
@@ -110,7 +112,7 @@ export const changeArchiveStatus = async (id, isArchived) => {
 }
 
 export const deleteNotes = async (id) => {
-  const res = await fetch(`http://localhost:3000/api/notes/${id}`,{
+  const res = await fetch(`${url}/${id}`,{
     method: "DELETE",
     headers: {
       "Content-Type": "application/json"
