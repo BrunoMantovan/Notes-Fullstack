@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import styles from './Note.module.css'
 import Trash from "../../assets/Svg/Trash"
-import Archive from '../../assets/Svg/archive'
+import Archive from '../../assets/Svg/Archive'
 import Unarchvie from '../../assets/Svg/Unarchvie'
 import Spinner from '../../assets/Svg/Spinner'
 import Cross from '../../assets/Svg/Cross'
