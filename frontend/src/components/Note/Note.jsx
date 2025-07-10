@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import styles from './note.module.css'
+import styles from './Note.module.css'
 import Trash from "../../assets/Svg/Trash"
 import Archive from '../../assets/Svg/archive'
 import Unarchvie from '../../assets/Svg/Unarchvie'
