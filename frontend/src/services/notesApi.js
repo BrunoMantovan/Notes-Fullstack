@@ -1,6 +1,6 @@
 import colors from '../assets/colors.json'
-
-const url = "https://notes-fullstack-t0jt.onrender.com/api/notes"
+const url = "http://200.123.115.58:3002/api/notes"
+//const url = "https://notes-fullstack-t0jt.onrender.com/api/notes"
 
 export const getNotes = async () => {
   const res = await fetch(url)
